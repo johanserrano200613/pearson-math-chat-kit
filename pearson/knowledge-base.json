@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "answerRules": [
+    {
+      "platform": "pearson",
+      "family": "first-order-exponential-derivative",
+      "prompt": "differentiate y = 8e^x - 9e^-x; verify y' = y + 18e^-x",
+      "answer": "8*e^(x)+9*e^(-x)",
+      "verification": "local-substitution",
+      "evidence": "d(8e^x - 9e^-x)/dx = 8e^x + 9e^-x; y + 18e^-x = 8e^x + 9e^-x. Comprobacion algebraica local; escritura y aceptacion en Pearson pendientes.",
+      "status": "VERIFIED",
+      "platformAcceptance": "NOT_CONFIRMED"
+    },
+    {
+      "platform": "pearson",
+      "family": "first-order-exponential-derivative",
+      "prompt": "differentiate y = e^x - 8e^-x; verify y' = y + 16e^-x",
+      "answer": "e^(x)+8*e^(-x)",
+      "verification": "local-substitution",
+      "evidence": "La parte 1 de Question 3, 1.1.5 fue aceptada por Pearson. Para la parte 2, y'=e^x+8e^-x y y+16e^-x=e^x+8e^-x; escritura/aceptacion de la parte 2 no confirmadas.",
+      "status": "VERIFIED",
+      "platformAcceptance": "PART_1_CONFIRMED_PART_2_NOT_CONFIRMED"
+    },
+    {
+      "platform": "pearson",
+      "family": "linear-constant-ode-2",
+      "prompt": "y double prime minus 400 y equals 0",
+      "answer": "c1*e^(20*x)+c2*e^(-20*x)",
+      "verification": "local-substitution",
+      "evidence": "La sustitucion local confirma y'' - 400y = 0.",
+      "status": "VERIFIED"
+    }
+  ],
+  "incidents": [
+    {
+      "code": "CDP_UNAVAILABLE",
+      "symptom": "Edge no expone el endpoint CDP configurado.",
+      "action": "STOP_AND_CONFIGURE",
+      "retryLimit": 0
+    },
+    {
+      "code": "UNSUPPORTED_EQUATION",
+      "symptom": "El enunciado no coincide con una familia implementada.",
+      "action": "HUMAN_INTERVENTION_REQUIRED",
+      "retryLimit": 0
+    },
+    {
+      "code": "RESULT_UNKNOWN",
+      "symptom": "La respuesta pudo enviarse, pero el resultado no se pudo confirmar.",
+      "action": "STOP_AND_OBSERVE",
+      "retryLimit": 0
+    },
+    {
+      "code": "QUESTION_CHANGED",
+      "symptom": "La pregunta cambió antes de usar la propuesta.",
+      "action": "DISCARD_AND_REOBSERVE",
+      "retryLimit": 0
+    },
+    {
+      "code": "UNKNOWN_ERROR",
+      "symptom": "Fallo no catalogado.",
+      "action": "STOP_AND_RECORD",
+      "retryLimit": 0
+    }
+  ],
+  "repairs": [
+    {
+      "code": "CDP_UNAVAILABLE",
+      "steps": [
+        "Comprobar que Edge fue iniciado con remote-debugging-port.",
+        "Comprobar que el endpoint responde en la misma maquina.",
+        "No cerrar ni reiniciar la sesion visible automaticamente."
+      ]
+    },
+    {
+      "code": "RESULT_UNKNOWN",
+      "steps": [
+        "No reenviar la respuesta.",
+        "Observar la pagina y confirmar el resultado manualmente.",
+        "Registrar la evidencia antes de continuar."
+      ]
+    },
+    {
+      "code": "QUESTION_CHANGED",
+      "steps": [
+        "Descartar la propuesta anterior.",
+        "Volver a identificar la pregunta por contenido y contexto.",
+        "Resolver de nuevo solo si existe una regla verificada."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+*.jsonl
+pearson-*-profile/
+*-profile/
+storage-state*.json
+cookies*.json
+auth*.json
+secrets.*
